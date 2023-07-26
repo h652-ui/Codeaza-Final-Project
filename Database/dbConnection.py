@@ -5,8 +5,8 @@ import logging
 cnx = mysql.connector.connect(
     host="localhost",    # Replace with your MySQL server host
     user="root",     # Replace with your MySQL username
-    password="", # Replace with your MySQL password
-    database="Stocks"  # Replace with your MySQL database name
+    password="1234", # Replace with your MySQL password
+    database="stocks"  # Replace with your MySQL database name
 )
 
 # Set up logging
@@ -18,17 +18,17 @@ def insert_data(symbol, name, last_price, change_value, percentage_change):
         cursor = cnx.cursor()
 
         # Check if the record already exists
-        sql = "SELECT * FROM Stocks WHERE Symbol = %s"
+        sql = "SELECT * FROM stocks WHERE Symbol = %s"
         cursor.execute(sql, (symbol,))
         existing_record = cursor.fetchone()
 
         if existing_record:
             # If the record exists, update it
-            sql = "UPDATE Stocks SET Name = %s, Last_Price = %s, Change_Value = %s, Percentage_Change = %s WHERE Symbol = %s"
+            sql = "UPDATE stocks SET Name = %s, Last_Price = %s, Change_Value = %s, Percentage_Change = %s WHERE Symbol = %s"
             cursor.execute(sql, (name, last_price, change_value, percentage_change, symbol))
         else:
             # If the record does not exist, insert a new record
-            sql = "INSERT INTO Stocks (Symbol, Name, Last_Price, Change_Value, Percentage_Change) VALUES (%s, %s, %s, %s, %s)"
+            sql = "INSERT INTO stocks (Symbol, Name, Last_Price, Change_Value, Percentage_Change) VALUES (%s, %s, %s, %s, %s)"
             cursor.execute(sql, (symbol, name, last_price, change_value, percentage_change))
 
         # Commit changes to the database
@@ -46,13 +46,12 @@ def getData():
         cursor = cnx.cursor(dictionary=True)
 
         # Fetch all data from the "Stocks" table
-        sql = "SELECT * FROM Stocks"
+        sql = "SELECT * FROM stocks"
         cursor.execute(sql)
         data = cursor.fetchall()
 
         # Close the cursor and connection
         cursor.close()
-        cnx.close()
 
         return data
     except Exception as e:
