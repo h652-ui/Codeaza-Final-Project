@@ -1,4 +1,4 @@
-### Codeaza Final Project
+# Codeaza Final Project
 
 ## Project Description:
 
