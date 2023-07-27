@@ -25,6 +25,7 @@ The Requirement.txt file is attached which described the dependencies. But here 
 - Make Sure having a setup for the Python 3+
 - Clone the Repo
 - Run ```pip install -r requirements.txt```.
+- Fill the .env.template file to your required credentials
 - Then Run ```python main.py```
 - Go to browser Or Postman/Thunderclient to make request to ```http://localhost:5000/```
 
