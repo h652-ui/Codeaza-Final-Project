@@ -1,12 +1,15 @@
 import mysql.connector
 import logging
+import os
+from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
 
 # Connect to the MySQL database
 cnx = mysql.connector.connect(
-    host="localhost",    # Replace with your MySQL server host
-    user="root",     # Replace with your MySQL username
-    password="1234", # Replace with your MySQL password
-    database="stocks"  # Replace with your MySQL database name
+    host=os.getenv('HOST'),    # Replace with your MySQL server host
+    user=os.getenv('USER'),     # Replace with your MySQL username
+    password=os.getenv('PASSWORD'), # Replace with your MySQL password
+    database=os.getenv('DATABASE')  # Replace with your MySQL database name
 )
 
 # Set up logging
